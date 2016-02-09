@@ -6,34 +6,37 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
+  function MainController($http) {
     var vm = this;
 
-    vm.awesomeThings = [];
-    vm.classAnimation = '';
-    vm.creationDate = 1455017784720;
-    vm.showToastr = showToastr;
+    vm.signIn = signIn;
 
-    activate();
+    function signIn() {
+      var data = vm.logInfo;
+      
+      getUserData(data)
+        .then(function(result){
+          vm.logInfo = {
+            username: '',
+            password: ''
+          };
 
-    function activate() {
-      getWebDevTec();
-      $timeout(function() {
-        vm.classAnimation = 'rubberBand';
-      }, 4000);
+          localStorage.token = result.data.api_key;
+
+        }, function onError() {
+          // server return code < 200 || > 300
+
+          vm.logInfo = {
+            username: '',
+            password: ''
+          };
+        });
+
     }
 
-    function showToastr() {
-      toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-      vm.classAnimation = '';
+    function getUserData(data) {
+      return $http.post('http://139.162.215.32/ng-test/public/index.php/api/login', data);
     }
 
-    function getWebDevTec() {
-      vm.awesomeThings = webDevTec.getTec();
-
-      angular.forEach(vm.awesomeThings, function(awesomeThing) {
-        awesomeThing.rank = Math.random();
-      });
-    }
   }
 })();
