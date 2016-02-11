@@ -6,22 +6,30 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($http) {
+  function MainController($http, $state, $rootScope) {
     var vm = this;
 
-    vm.signIn = signIn;
+    vm.logIn = logIn;
 
-    function signIn() {
+    function logIn() {
       var data = vm.logInfo;
       
       getUserData(data)
         .then(function(result){
+
+          localStorage.token = result.data.api_key;
+          localStorage.username = result.data.username;
+          localStorage.id = result.data.id;
+          $rootScope.token = result.data.token;
+          $rootScope.username = result.data.username;
+          $rootScope.id = result.data.id;
+
+          verifyUserData();
+
           vm.logInfo = {
             username: '',
             password: ''
           };
-
-          localStorage.token = result.data.api_key;
 
         }, function onError() {
           // server return code < 200 || > 300
@@ -31,7 +39,15 @@
             password: ''
           };
         });
+    }
 
+    function verifyUserData () {
+      if (localStorage.token != 'undefined') {
+        $state.go('accomp');
+
+      } else {
+        $('.error').show();
+      }
     }
 
     function getUserData(data) {
