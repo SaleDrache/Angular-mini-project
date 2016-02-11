@@ -11,6 +11,8 @@
     vm.token = $rootScope.token;
     vm.username = $rootScope.username;
     vm.id = $rootScope.id;
+    vm.addBeer = addBeer;
+    vm.addCoffee = addCoffee;
 
     getAccomplishments();
 
@@ -32,14 +34,25 @@
         }
       }
 
-      var accomplishmentIndex = _.findIndex(accomplishments, function(a) { return a.id == id } );
-
+      var accomplishmentIndex = findIndex(vm.accomplishments, id);
+      
       $http(req)
         .then(function(result){
+          reward += 's';
           vm.accomplishments[accomplishmentIndex][reward] = result.data[reward];
+
         }, function(){
 
         });
+
+    }
+
+    function findIndex(array, id) {
+      for (var i = 0, arrayLength = array.length; i < arrayLength; i++) {
+        if (array[i].id == id) {
+          return i;
+        }
+      }
     }
 
     function getAccomplishments() {
