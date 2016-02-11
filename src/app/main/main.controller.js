@@ -43,7 +43,7 @@
 
     function verifyUserData () {
       if (localStorage.token != 'undefined') {
-        $state.go('accomp');
+        $state.go('accomplishments');
 
       } else {
         $('.error').show();

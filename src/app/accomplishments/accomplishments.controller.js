@@ -6,16 +6,23 @@
     .controller('AccompController', AccompController);
 
   /** @ngInject */
-  function AccompController($http, $rootScope) {
+  function AccompController($http, $state, $rootScope) {
     var vm = this;
     vm.token = $rootScope.token;
     vm.username = $rootScope.username;
     vm.id = $rootScope.id;
     vm.addBeer = addBeer;
     vm.addCoffee = addCoffee;
+    vm.addAccomplishment = addAccomplishment;
+    localStorage.accomplishments = vm.accomplishments;
+    $rootScope.accomplishments = localStorage.accomplishments;
 
     getAccomplishments();
 
+
+    function addAccomplishment() {
+      $state.go('createAccomplishment');
+    }
 
     function addBeer(accomplishment) {
       updateReward(accomplishment.id, 'beer');
@@ -33,12 +40,11 @@
           'X-Auth-Token': vm.token
         }
       }
-
-      var accomplishmentIndex = findIndex(vm.accomplishments, id);
       
       $http(req)
         .then(function(result){
-          reward += 's';
+          var accomplishmentIndex = findIndex(vm.accomplishments, id);
+          reward += 's';            // when sending PUT request, we are sending beer and coffee, when receive restult keys are beers and coffees
           vm.accomplishments[accomplishmentIndex][reward] = result.data[reward];
 
         }, function(){

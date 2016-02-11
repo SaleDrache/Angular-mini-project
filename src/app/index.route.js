@@ -14,11 +14,17 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('accomp', {
+      .state('accomplishments', {
         url: '/accomplishments',
         templateUrl: 'app/accomplishments/accomplishments.html',
         controller: 'AccompController',
         controllerAs: 'accomp'
+      })
+      .state('createAccomplishment', {
+        url: '/accomplishments/create',
+        templateUrl: 'app/accomplishments/create/create-accomplishment.html',
+        controller: 'CreateAccompController',
+        controllerAs: 'create'
       });
 
     $urlRouterProvider.otherwise('/login');
