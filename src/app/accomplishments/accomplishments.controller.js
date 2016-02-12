@@ -2,22 +2,22 @@
   'use strict';
 
   angular
-    .module('angularMiniProject')
+    .module('angularMiniProject.accomplishments')
     .controller('AccompController', AccompController);
 
   /** @ngInject */
-  function AccompController($http, $state, $rootScope) {
+  function AccompController($http, $state, $rootScope, AppService, accomplishments) {
     var vm = this;
-    vm.token = $rootScope.token;
     vm.username = $rootScope.username;
     vm.id = $rootScope.id;
     vm.addBeer = addBeer;
     vm.addCoffee = addCoffee;
     vm.addAccomplishment = addAccomplishment;
+
+    vm.accomplishments = accomplishments.data;
+
     localStorage.accomplishments = vm.accomplishments;
     $rootScope.accomplishments = localStorage.accomplishments;
-
-    getAccomplishments();
 
 
     function addAccomplishment() {
@@ -33,15 +33,7 @@
     }
 
     function updateReward(id, reward) {
-      var req = {
-        method: 'PUT',
-        url: 'http://139.162.215.32/ng-test/public/index.php/api/accomplishments/'+ id +'/reward?type='+ reward,
-        headers: {
-          'X-Auth-Token': vm.token
-        }
-      }
-      
-      $http(req)
+      AppService.updateReward(id, reward)
         .then(function(result){
           var accomplishmentIndex = findIndex(vm.accomplishments, id);
           reward += 's';            // when sending PUT request, we are sending beer and coffee, when receive restult keys are beers and coffees
@@ -50,7 +42,6 @@
         }, function(){
 
         });
-
     }
 
     function findIndex(array, id) {
@@ -59,25 +50,7 @@
           return i;
         }
       }
-    }
-
-    function getAccomplishments() {
-      var req = {
-        method: 'GET',
-        url: 'http://139.162.215.32/ng-test/public/index.php/api/accomplishments',
-        headers: {
-          'X-Auth-Token': vm.token
-        }
-      }
-
-      $http(req)
-        .then(function(result){
-          vm.accomplishments = result.data;
-        }, function(){
-
-        });
-    }
-    
+    }    
 
   }
 })();

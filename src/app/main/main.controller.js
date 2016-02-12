@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($http, $state, $rootScope) {
+  function MainController($http, $state, $rootScope, AppService) {
     var vm = this;
 
     vm.logIn = logIn;
@@ -14,7 +14,7 @@
     function logIn() {
       var data = vm.logInfo;
       
-      getUserData(data)
+      AppService.getUserData(data)
         .then(function(result){
 
           localStorage.token = result.data.api_key;
@@ -50,9 +50,7 @@
       }
     }
 
-    function getUserData(data) {
-      return $http.post('http://139.162.215.32/ng-test/public/index.php/api/login', data);
-    }
+    
 
   }
 })();

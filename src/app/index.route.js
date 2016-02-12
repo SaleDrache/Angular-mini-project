@@ -16,6 +16,12 @@
       })
       .state('accomplishments', {
         url: '/accomplishments',
+        resolve: {
+          accomplishments: ['AppService', 
+            function(AppService){
+              return AppService.getAccomplishments();
+            }]
+        },
         templateUrl: 'app/accomplishments/accomplishments.html',
         controller: 'AccompController',
         controllerAs: 'accomp'

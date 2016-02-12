@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('angularMiniProject', ['ngAnimate', 'ui.router', 'toastr']);
+    .module('angularMiniProject', ['ngAnimate', 'ui.router', 'toastr', 'angularMiniProject.accomplishments']);
 
 })();
