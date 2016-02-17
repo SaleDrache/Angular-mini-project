@@ -21,13 +21,7 @@
       accomplishment.date = unixtime;
 
       AppService.postNewAccomplishment(accomplishment)
-        .then(function(result){
-          /*var createdAccomp = result.data;
-          createdAccomp.user = {
-            id: $rootScope.id,
-            username: $rootScope.username
-          };
-          vm.accomplishments.push(createdAccomp);*/
+        .then(function(){
           $state.go('accomplishments');
 
           vm.new = {

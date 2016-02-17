@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('angularMiniProject')
-    .controller('MainController', MainController);
+    .module('angularMiniProject.login')
+    .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function MainController($http, $state, $rootScope, AppService) {
+  function LoginController($http, $state, $rootScope, AppService) {
     var vm = this;
 
     vm.logIn = logIn;

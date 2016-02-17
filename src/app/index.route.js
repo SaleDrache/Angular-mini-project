@@ -10,8 +10,8 @@
     $stateProvider
       .state('home', {
         url: '/login',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainController',
+        templateUrl: 'app/login/login.html',
+        controller: 'LoginController',
         controllerAs: 'main'
       })
       .state('accomplishments', {
