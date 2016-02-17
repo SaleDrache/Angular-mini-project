@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('angularMiniProject')
+    .module('angularMiniProject.login')
     .controller('CreateAccompController', CreateAccompController);
 
   /** @ngInject */
