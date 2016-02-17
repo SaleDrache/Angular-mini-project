@@ -3,24 +3,19 @@
 
   angular
     .module('angularMiniProject')
-    .service('AppService', AppService);
+    .service('AccomplishmentService', AccomplishmentService);
 
     /** @ngInject */
-    function AppService($http, $rootScope, config) { 
+    function AccomplishmentService($http, $rootScope, config) { 
       var vm = this;
-      vm.getUserData = getUserData;
       vm.getAccomplishments = getAccomplishments;
       vm.updateReward = updateReward;
       vm.postNewAccomplishment = postNewAccomplishment;
 
-	  function getUserData(data) {
-  	    return $http.post(config.api.concat('/login'), data);
-	  }
-
-	  function getAccomplishments() {
+	    function getAccomplishments() {
         var req = {
           method: 'GET',
-          url: 'http://139.162.215.32/ng-test/public/index.php/api/accomplishments',
+          url: config.api.concat('/accomplishments'),
           headers: {
             'X-Auth-Token': $rootScope.token
           }

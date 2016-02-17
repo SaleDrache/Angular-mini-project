@@ -6,7 +6,7 @@
     .controller('AccompController', AccompController);
 
   /** @ngInject */
-  function AccompController($http, $state, $rootScope, AppService, accomplishments) {
+  function AccompController($http, $state, $rootScope, AccomplishmentService, accomplishments) {
     var vm = this;
     vm.username = $rootScope.username;
     vm.id = $rootScope.id;
@@ -33,7 +33,7 @@
     }
 
     function updateReward(id, reward) {
-      AppService.updateReward(id, reward)
+      AccomplishmentService.updateReward(id, reward)
         .then(function(result){
           var accomplishmentIndex = findIndex(vm.accomplishments, id);
           reward += 's';            // when sending PUT request, we are sending beer and coffee, when receive restult keys are beers and coffees

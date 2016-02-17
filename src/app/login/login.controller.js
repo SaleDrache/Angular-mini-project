@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($http, $state, $rootScope, AppService) {
+  function LoginController($http, $state, $rootScope, UserService) {
     var vm = this;
 
     vm.logIn = logIn;
@@ -14,7 +14,7 @@
     function logIn() {
       var data = vm.logInfo;
       
-      AppService.getUserData(data)
+      UserService.getUserData(data)
         .then(function(result){
 
           localStorage.token = result.data.api_key;

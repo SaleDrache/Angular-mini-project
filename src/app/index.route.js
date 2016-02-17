@@ -17,9 +17,9 @@
       .state('accomplishments', {
         url: '/accomplishments',
         resolve: {
-          accomplishments: ['AppService', 
-            function(AppService){
-              return AppService.getAccomplishments();
+          accomplishments: ['AccomplishmentService', 
+            function(AccomplishmentService){
+              return AccomplishmentService.getAccomplishments();
             }]
         },
         templateUrl: 'app/accomplishments/accomplishments.html',
@@ -28,7 +28,7 @@
       })
       .state('createAccomplishment', {
         url: '/accomplishments/create',
-        templateUrl: 'app/accomplishments/create/create-accomplishment.html',
+        templateUrl: 'app/accomplishments/create/accomplishments.create.html',
         controller: 'CreateAccompController',
         controllerAs: 'create'
       });

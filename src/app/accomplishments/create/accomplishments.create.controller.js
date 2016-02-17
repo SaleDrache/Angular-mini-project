@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('angularMiniProject.login')
+    .module('angularMiniProject.accomplishments.create')
     .controller('CreateAccompController', CreateAccompController);
 
   /** @ngInject */
-  function CreateAccompController($http, $state, $rootScope, AppService) {
+  function CreateAccompController($http, $state, $rootScope, AccomplishmentService) {
     var vm = this;
 
     vm.accomplishments = $rootScope.accomplishments;
@@ -20,7 +20,7 @@
       accomplishment.user_id = $rootScope.id;
       accomplishment.date = unixtime;
 
-      AppService.postNewAccomplishment(accomplishment)
+      AccomplishmentService.postNewAccomplishment(accomplishment)
         .then(function(){
           $state.go('accomplishments');
 
