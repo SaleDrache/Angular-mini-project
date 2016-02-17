@@ -12,7 +12,7 @@
         url: '/login',
         templateUrl: 'app/login/login.html',
         controller: 'LoginController',
-        controllerAs: 'main'
+        controllerAs: 'log'
       })
       .state('accomplishments', {
         url: '/accomplishments',

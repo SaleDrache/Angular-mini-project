@@ -5,13 +5,13 @@
   <form role="form">      
     <div class="row">      
       <div class="form-group col-xs-offset-4 col-xs-4"> 
-          <input ng-model="main.logInfo.username" type="text" name="fullname" class="form-control" placeholder="Name">
+          <input ng-model="log.logInfo.username" type="text" name="fullname" class="form-control" placeholder="Name">
       </div>
     </div>
 
     <div class="row">
       <div class="form-group col-xs-offset-4 col-xs-4"> 
-          <input ng-model="main.logInfo.password" type="password" name="password" class="form-control" placeholder="Password">
+          <input ng-model="log.logInfo.password" type="password" name="password" class="form-control" placeholder="Password">
       </div>
     </div>
 
@@ -19,7 +19,7 @@
 
     <div class="signInBtn form-group col-xs-12"> 
       <div class="col-xs-offset-5 col-sm-2">
-          <button class="col-xs-12" ng-click="main.logIn()">Log in</button>
+          <button class="col-xs-12" ng-click="log.logIn()">Log in</button>
       </div>
     </div>
   </form>
