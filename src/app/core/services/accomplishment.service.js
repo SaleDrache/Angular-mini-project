@@ -27,7 +27,7 @@
       function updateReward(id, reward) {
         var req = {
           method: 'PUT',
-          url: 'http://139.162.215.32/ng-test/public/index.php/api/accomplishments/'+ id +'/reward?type='+ reward,
+          url: config.api + '/accomplishments/'+ id +'/reward?type='+ reward,
           headers: {
             'X-Auth-Token': $rootScope.token
           }
@@ -39,7 +39,7 @@
       function postNewAccomplishment(data) {
 	    var req = {
           method: 'POST',
-          url: 'http://139.162.215.32/ng-test/public/index.php/api/accomplishments',
+          url: config.api.concat('/accomplishments'),
           headers: {
             'X-Auth-Token': $rootScope.token
           },
