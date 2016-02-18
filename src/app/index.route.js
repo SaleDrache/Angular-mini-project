@@ -8,11 +8,14 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
+      .state('login', {
         url: '/login',
         templateUrl: 'app/login/login.html',
         controller: 'LoginController',
-        controllerAs: 'log'
+        controllerAs: 'log',
+        data: {
+          requireLogin: false
+        }
       })
       .state('accomplishments', {
         url: '/accomplishments',
@@ -24,13 +27,19 @@
         },
         templateUrl: 'app/accomplishments/accomplishments.html',
         controller: 'AccompController',
-        controllerAs: 'accomp'
+        controllerAs: 'accomp',
+        data: {
+          requireLogin: true
+        }
       })
       .state('createAccomplishment', {
         url: '/accomplishments/create',
         templateUrl: 'app/accomplishments/create/accomplishments.create.html',
         controller: 'CreateAccompController',
-        controllerAs: 'create'
+        controllerAs: 'create',
+        data: {
+          requireLogin: true
+        }
       });
 
     $urlRouterProvider.otherwise('/login');
