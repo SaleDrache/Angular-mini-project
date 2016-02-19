@@ -9,7 +9,6 @@
   function CreateAccompController($http, $state, $rootScope, AccomplishmentService) {
     var vm = this;
 
-    vm.accomplishments = $rootScope.accomplishments;
     vm.newAccomplishment = newAccomplishment;
 
     function newAccomplishment (accomp) {

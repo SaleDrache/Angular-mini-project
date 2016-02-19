@@ -16,9 +16,9 @@
         var req = {
           method: 'GET',
           url: config.api.concat('/accomplishments'),
-          headers: {
-            'X-Auth-Token': $rootScope.token
-          }
+          /*headers: {
+            'X-Auth-Token' : $rootScope.token
+          }*/
         }
 
         return $http(req);
@@ -28,9 +28,6 @@
         var req = {
           method: 'PUT',
           url: config.api + '/accomplishments/'+ id +'/reward?type='+ reward,
-          headers: {
-            'X-Auth-Token': $rootScope.token
-          }
         }
       
         return $http(req);	 
@@ -40,9 +37,6 @@
 	    var req = {
           method: 'POST',
           url: config.api.concat('/accomplishments'),
-          headers: {
-            'X-Auth-Token': $rootScope.token
-          },
           data: data
         }
 

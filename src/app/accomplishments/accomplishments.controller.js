@@ -16,9 +16,6 @@
 
     vm.accomplishments = accomplishments.data;
 
-    localStorage.accomplishments = vm.accomplishments;
-    $rootScope.accomplishments = localStorage.accomplishments;
-
 
     function addAccomplishment() {
       $state.go('createAccomplishment');
